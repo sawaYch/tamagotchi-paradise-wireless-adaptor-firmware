@@ -2,7 +2,7 @@
 
 A Bluetooth transparent serial bridge for **Tamagotchi Paradise**. It lets PC and mobile tools such as **TamaHome** (https://bbamorachi.us/tamahome-toolkit-windows/), **BBSite** (https://tools.bbamorachi.us/), and similar UART-based apps talk to the device wirelessly over Bluetooth instead of a wired USB–UART cable.
 
-Built around an **ESP-32S** module, the adaptor sits between the host and Tamagotchi Paradise and forwards bytes in both directions at 460800 baud.
+Built around an **ESP32-WROOM-32E-N4** module, the adaptor sits between the host and Tamagotchi Paradise and forwards bytes in both directions at 460800 baud.
 
 ## Why this exists
 
@@ -21,7 +21,7 @@ Host app (TamaHome / BBSite / …)
         │
         │  Bluetooth Classic SPP  or  BLE
         ▼
-   ESP-32S bridge board
+   ESP32-WROOM-32E-N4 bridge board
         │
         │  UART @ 460800 (GPIO16 RX / GPIO17 TX)
         ▼
@@ -45,7 +45,7 @@ Device names:
 | Path                                             | Contents                                                                                 |
 | ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | [`firmware/tama_bridge/`](firmware/tama_bridge/) | Arduino / ESP32 firmware (SPP + BLE bridge)                                              |
-| [`hardware/`](hardware/)                         | ESP-32S PCB docs, KiCad project, Gerber / BOM / CPL                                      |
+| [`hardware/`](hardware/)                         | ESP32-WROOM-32E-N4 PCB docs, KiCad project, Gerber / BOM / CPL                           |
 | [`worker/`](worker/)                             | Cloudflare Worker that proxies web tools and injects a BLE Web Serial shim               |
 | [`tools/ble-loopback/`](tools/ble-loopback/)     | Optional local BLE throughput / shim test pages (just a dev tools for protocol analysis) |
 
@@ -63,7 +63,7 @@ Flash with an external USB–UART (CH340 / CP2102): hold **BOOT**, press **RST**
 
 ## Hardware
 
-Custom PCB based on ESP-32S (~20 × 37.6 mm), 3.3 V powered, with pads for:
+Custom PCB based on ESP32-WROOM-32E-N4 (20 × 31.35 mm board, antenna overhangs ~6 mm), 3.3 V powered, with pads for:
 
 - Battery / 3.3 V power
 - Programming UART
@@ -71,7 +71,7 @@ Custom PCB based on ESP-32S (~20 × 37.6 mm), 3.3 V powered, with pads for:
 - Mode switch
 
 Full pad map, BOM notes, and Gerber path: [`hardware/README.md`](hardware/README.md)  
-KiCad project: [`hardware/kicad/tama_bridge_esp32s/`](hardware/kicad/tama_bridge_esp32s/)
+KiCad project: [`hardware/kicad/tama_bridge_esp32_wroom_32e/`](hardware/kicad/tama_bridge_esp32_wroom_32e/)
 
 ## Web tools (BLE shim)
 

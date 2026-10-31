@@ -15,3 +15,6 @@ _autosave-*
 
 .DS_Store
 Thumbs.db
+
+# Keep the product brief out of copperhead rollback (`git clean -fd` deletes untracked files)
+/brief.md

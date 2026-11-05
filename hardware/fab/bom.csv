@@ -1,0 +1,12 @@
+Comment,Designator,Footprint,LCSC Part #,MPN,Manufacturer,Quantity,Notes
+10uF,C1,Capacitor_SMD:C_0402_1005Metric,,CL05A106MQ5NUN,,1,MPN from the project list; not checked against a distributor
+100nF,"C2,C3,C4,C5",Capacitor_SMD:C_0402_1005Metric,,CL05B104KO5NNNC,,4,MPN from the project list; not checked against a distributor
+USB4105-03-A,J1,Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,,USB4105-03-A,,1,MPN from the project list; not checked against a distributor
+2N7002,"Q1,Q2",Package_TO_SOT_SMD:SOT-23,,2N7002,,2,MPN from the project list; not checked against a distributor
+5.1k,"R1,R2",Resistor_SMD:R_0402_1005Metric,,RC0402FR-075K1L,,2,MPN from the project list; not checked against a distributor
+10k,"R3,R4,R5,R6",Resistor_SMD:R_0402_1005Metric,,RC0402FR-0710KL,,4,MPN from the project list; not checked against a distributor
+470,"R7,R8",Resistor_SMD:R_0402_1005Metric,,RC0402FR-07470RL,,2,MPN from the project list; not checked against a distributor
+B3U-1000P,"SW1,SW2",Button_Switch_SMD:SW_SPST_B3U-1000P,,B3U-1000P,,2,datasheet checked
+ESP32-WROOM-32E-N4,U1,RF_Module:ESP32-WROOM-32E,,ESP32-WROOM-32E-N4,,1,MPN from the project list; not checked against a distributor
+CH340C,U2,Package_SO:SOIC-16_3.9x9.9mm_P1.27mm,,CH340C,,1,MPN from the project list; not checked against a distributor
+LM66100DCK,U3,Package_TO_SOT_SMD:SOT-363_SC-70-6,,LM66100DCKR,,1,MPN from the project list; not checked against a distributor

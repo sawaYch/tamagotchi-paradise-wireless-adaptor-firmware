@@ -8,8 +8,8 @@ One row per refdes. Value = component value only (drawn on sheet). Prose in Rati
 | U2 | CH340C | Package_SO:SOIC-16_3.9x9.9mm_P1.27mm | CH340C UNVERIFIED | USB-UART from VBUS only (VCC=VBUS, V3 bypassed); Iq off when USB unplugged — holds power.ch340_from_vbus_only and ≤50 µA sleep |
 | U3 | LM66100DCK | Package_TO_SOT_SMD:SOT-363_SC-70-6 | LM66100DCKR UNVERIFIED | BAT+→+3V3 ideal-diode reverse protection; typ Iq ~0.2 µA / reverse leakage ≪50 µA; ~CE tied GND (always on); ST left open (intentional — no pullup Iq) |
 | J1 | USB4105-03-A | Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal | USB4105-03-A UNVERIFIED | USB2 16P mid-mount sink; D+/D− to CH340; VBUS to U2 only — no feed to +3V3 |
-| SW1 | PTS810 | Button_Switch_SMD:SW_SPST_PTS810 | PTS810 UNVERIFIED | RESET momentary → EN; 4.2×3.2 mm body, about 2.5 mm tall, on the top |
-| SW2 | PTS810 | Button_Switch_SMD:SW_SPST_PTS810 | PTS810 UNVERIFIED | BOOT momentary → GPIO0 strap |
+| SW1 | B3U-1000P | Button_Switch_SMD:SW_SPST_B3U-1000P | B3U-1000P | RESET momentary → EN; 3.0×2.5×1.6 mm, no boss, on the top |
+| SW2 | B3U-1000P | Button_Switch_SMD:SW_SPST_B3U-1000P | B3U-1000P | BOOT momentary → GPIO0 strap |
 | Q1 | 2N7002 | Package_TO_SOT_SMD:SOT-23 | 2N7002 UNVERIFIED | Auto-reset: DTR drives EN low; off-state Igss negligible vs sleep |
 | Q2 | 2N7002 | Package_TO_SOT_SMD:SOT-23 | 2N7002 UNVERIFIED | Auto-boot: RTS drives IO0 low; off-state leakage ≪50 µA |
 | R1 | 5.1k | Resistor_SMD:R_0402_1005Metric | RC0402FR-075K1L UNVERIFIED | CC1→GND sink advertisement (usb.cc_sink_advertisement) |

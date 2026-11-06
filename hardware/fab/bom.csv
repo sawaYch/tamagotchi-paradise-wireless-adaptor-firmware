@@ -1,12 +1,12 @@
 Comment,Designator,Footprint,LCSC Part #,MPN,Manufacturer,Quantity,Notes
 10uF,C1,Capacitor_SMD:C_0402_1005Metric,,CL05A106MQ5NUN,,1,MPN from the project list; not checked against a distributor
-100nF,"C2,C3,C4,C5",Capacitor_SMD:C_0402_1005Metric,,CL05B104KO5NNNC,,4,MPN from the project list; not checked against a distributor
-USB4105-03-A,J1,Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal,,USB4105-03-A,,1,MPN from the project list; not checked against a distributor
-2N7002,"Q1,Q2",Package_TO_SOT_SMD:SOT-23,,2N7002,,2,MPN from the project list; not checked against a distributor
-5.1k,"R1,R2",Resistor_SMD:R_0402_1005Metric,,RC0402FR-075K1L,,2,MPN from the project list; not checked against a distributor
-10k,"R3,R4,R5,R6",Resistor_SMD:R_0402_1005Metric,,RC0402FR-0710KL,,4,MPN from the project list; not checked against a distributor
-470,"R7,R8",Resistor_SMD:R_0402_1005Metric,,RC0402FR-07470RL,,2,MPN from the project list; not checked against a distributor
-B3U-1000P,"SW1,SW2",Button_Switch_SMD:SW_SPST_B3U-1000P,,B3U-1000P,,2,datasheet checked
+CL05B104KO5NNNC,"C2,C3,C4,C5",Capacitor_SMD:C_0402_1005Metric,C1525,CL05B104KO5NNNC,Samsung Electro-Mechanics,4,100nF 16V X7R ±10% 0402 Basic; JLCPCB stock checked 2026-11-06
+TYPE-C-31-M-12,J1,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,C165948,TYPE-C-31-M-12,Korean Hroparts Elec,1,JLCPCB Extended part; stock checked 2026-11-06
+2N7002,"Q1,Q2",Package_TO_SOT_SMD:SOT-23,C8545,2N7002,,2,SOT-23-3 pin 1 bottom-right; Basic stock checked 2026-11-06
+0402WGF5101TCE,"R1,R2",Resistor_SMD:R_0402_1005Metric,C25905,0402WGF5101TCE,UNI-ROYAL,2,5.1k 0402 ±1% Basic; JLCPCB stock checked 2026-11-06
+0402WGF1002TCE,"R3,R4,R5,R6",Resistor_SMD:R_0402_1005Metric,C25744,0402WGF1002TCE,UNI-ROYAL,4,10k 0402 ±1% Basic; JLCPCB stock checked 2026-11-06
+0402WGF4700TCE,"R7,R8",Resistor_SMD:R_0402_1005Metric,C25117,0402WGF4700TCE,UNI-ROYAL,2,470 0402 ±1% Basic; JLCPCB stock checked 2026-11-06
+B3U-1000P,"SW1,SW2",Button_Switch_SMD:SW_SPST_B3U-1000P,C231329,B3U-1000P,,2,JLCPCB stock checked 2026-11-06
 ESP32-WROOM-32E-N4,U1,RF_Module:ESP32-WROOM-32E,,ESP32-WROOM-32E-N4,,1,MPN from the project list; not checked against a distributor
 CH340C,U2,Package_SO:SOIC-16_3.9x9.9mm_P1.27mm,,CH340C,,1,MPN from the project list; not checked against a distributor
 LM66100DCK,U3,Package_TO_SOT_SMD:SOT-363_SC-70-6,,LM66100DCKR,,1,MPN from the project list; not checked against a distributor

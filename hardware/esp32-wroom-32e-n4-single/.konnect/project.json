@@ -1,0 +1,17 @@
+{
+  "design_rules": [],
+  "fab_constraints": {
+    "copper_oz": 1,
+    "dru_file": "esp32-wroom-32e-n4-single.kicad_dru",
+    "fab_house": "JLCPCB",
+    "layer_count": 2,
+    "min_clearance_mm": 0.1,
+    "min_trace_width_mm": 0.1,
+    "min_via_diameter_mm": 0.4,
+    "preferred_via_diameter_mm": 0.45,
+    "source": "https://github.com/Cimos/kicad-druid",
+    "variant": "JLCPCB-2L-1oz"
+  },
+  "naming_conventions": {},
+  "sourcing": {}
+}

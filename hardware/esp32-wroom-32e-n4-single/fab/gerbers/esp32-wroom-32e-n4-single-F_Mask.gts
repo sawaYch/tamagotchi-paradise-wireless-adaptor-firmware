@@ -1,12 +1,12 @@
 %TF.GenerationSoftware,KiCad,Pcbnew,10.0.6*%
-%TF.CreationDate,2026-11-07T10:57:01+08:00*%
+%TF.CreationDate,2026-11-14T06:16:46+08:00*%
 %TF.ProjectId,esp32-wroom-32e-n4-single,65737033-322d-4777-926f-6f6d2d333265,rev?*%
 %TF.SameCoordinates,Original*%
 %TF.FileFunction,Soldermask,Top*%
 %TF.FilePolarity,Negative*%
 %FSLAX46Y46*%
 G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
-G04 Created by KiCad (PCBNEW 10.0.6) date 2026-11-07 10:57:01*
+G04 Created by KiCad (PCBNEW 10.0.6) date 2026-11-14 06:16:46*
 %MOMM*%
 %LPD*%
 G01*
@@ -75,8 +75,8 @@ X19009999Y-30650000D03*
 %TD*%
 D13*
 %TO.C,SW2*%
-X15450000Y-28050000D03*
-X18850000Y-28050000D03*
+X15250000Y-28050000D03*
+X18650000Y-28050000D03*
 %TD*%
 D14*
 %TO.C,U1*%

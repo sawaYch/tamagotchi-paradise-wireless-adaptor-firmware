@@ -6816,6 +6816,14 @@
 		(uuid "efcb75c1-5e90-46bc-bffe-1406d1f7262e")
 	)
 	(segment
+		(start 12.45 29.47)
+		(end 12.45 29.45)
+		(width 0.12)
+		(layer "F.Cu")
+		(net "/VBUS")
+		(uuid "3682caae-c964-4445-9677-ba2e050c40b8")
+	)
+	(segment
 		(start 12.86 28.15)
 		(end 13.51 28.8)
 		(width 0.13)
@@ -6832,6 +6840,14 @@
 		(uuid "5872e420-1616-4eff-8a7a-e127e0ce190b")
 	)
 	(segment
+		(start 13.1 28.8)
+		(end 13.12 28.8)
+		(width 0.12)
+		(layer "F.Cu")
+		(net "/VBUS")
+		(uuid "5a66855f-0d9a-47a8-a954-b9b73f6c86d5")
+	)
+	(segment
 		(start 13.51 28.8)
 		(end 14.21 29.5)
 		(width 0.13)
@@ -6840,20 +6856,20 @@
 		(uuid "64182f6a-cb85-4813-9853-0afecf913423")
 	)
 	(segment
+		(start 12.45 29.45)
+		(end 13.1 28.8)
+		(width 0.12)
+		(layer "F.Cu")
+		(net "/VBUS")
+		(uuid "73bced66-fa09-4fd8-b9b6-00810244d84c")
+	)
+	(segment
 		(start 12.1 28.15)
 		(end 12.86 28.15)
 		(width 0.13)
 		(layer "F.Cu")
 		(net "/VBUS")
 		(uuid "bf06aa68-5e32-45a7-9f49-4fee9e550dd5")
-	)
-	(segment
-		(start 12.45 29.47)
-		(end 13.12 28.8)
-		(width 0.13)
-		(layer "F.Cu")
-		(net "/VBUS")
-		(uuid "c5316817-1e84-4836-af82-78640e018441")
 	)
 	(segment
 		(start 14.21 29.5)

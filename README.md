@@ -42,36 +42,37 @@ Device names:
 
 ## Repository layout
 
-| Path                                             | Contents                                                                                 |
-| ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| [`firmware/tama_bridge/`](firmware/tama_bridge/) | Arduino / ESP32 firmware (SPP + BLE bridge)                                              |
-| [`hardware/`](hardware/)                         | ESP32-WROOM-32E-N4 PCB docs, KiCad project, Gerber / BOM / CPL                           |
-| [`worker/`](worker/)                             | Cloudflare Worker that proxies web tools and injects a BLE Web Serial shim               |
-| [`tools/ble-loopback/`](tools/ble-loopback/)     | Optional local BLE throughput / shim test pages (just a dev tools for protocol analysis) |
+| Path                                                                                   | Contents                                                                                  |
+| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [`firmware/tama_bridge/`](firmware/tama_bridge/)                                       | Arduino / ESP32 firmware (SPP + BLE bridge)                                               |
+| [`hardware/esp32-wroom-32e-n4-single/`](hardware/esp32-wroom-32e-n4-single/)           | KiCad project for the ESP32-WROOM-32E-N4 board, plus Gerbers, BOM, and CPL               |
+| [`hardware/README.md`](hardware/README.md)                                             | Pad map, flashing, and fabrication notes                                                  |
+| [`worker/`](worker/)                                                                   | Cloudflare Worker that proxies web tools and injects a BLE Web Serial shim                |
+| [`tools/ble-loopback/`](tools/ble-loopback/)                                           | Optional local BLE throughput / shim test pages (dev tools for protocol analysis)        |
 
-To make the entire wireless adaptor works, you also need a adaptor case with rechargeable LiPo battery circuit; You can reference to my another repo:　https://github.com/sawaYch/tamagotchi-paradise-uart-adaptor/tree/main/models/wireless
+The adaptor also needs a case and a rechargeable LiPo battery circuit. See https://github.com/sawaYch/tamagotchi-paradise-uart-adaptor/tree/main/models/wireless
 
 ## Firmware
 
 Sketch: [`firmware/tama_bridge/tama_bridge.ino`](firmware/tama_bridge/tama_bridge.ino)
 
 - Arduino board: **ESP32 Dev Module** (4 MB flash is enough)
-- Pins: UART2 on **IO16** (RX from Tama), **IO17** (TX to Tama); mode on **IO4**; status LED on **IO2**
+- Pins: UART2 on **IO16** (RX from Tamagotchi), **IO17** (TX to Tamagotchi); mode on **IO4**. Firmware also drives **IO2**, which this board does not bring out to a pad or LED.
 - Build options in `build_opt.h` raise NimBLE buffers / MTU for better BLE throughput
 
-Flash with an external USB–UART (CH340 / CP2102): hold **BOOT**, press **RST**, release **BOOT**, then upload. See [`hardware/README.md`](hardware/README.md).
+Flash over the board’s USB-C port (onboard CH340X): hold **BOOT**, press **RST**, release **BOOT**, then upload. See [`hardware/README.md`](hardware/README.md).
 
 ## Hardware
 
-Custom PCB based on ESP32-WROOM-32E-N4 (20 × 31.35 mm board, antenna overhangs ~6 mm), 3.3 V powered, with pads for:
+One board, [`hardware/esp32-wroom-32e-n4-single/`](hardware/esp32-wroom-32e-n4-single/): a 2-layer, 20.0 × 31.35 mm PCB (1.6 mm, 1 oz). The ESP32-WROOM-32E-N4 antenna extends about 6.25 mm past the board edge. The module runs from an external 3.3 V LiPo regulator through an LM66100 ideal diode. USB-C powers a CH340X for programming and does not feed the battery rail.
 
-- Battery / 3.3 V power
-- Programming UART
-- Tamagotchi UART
-- Mode switch
+Hand-solder pads on the back edge:
 
-Full pad map, BOM notes, and Gerber path: [`hardware/README.md`](hardware/README.md)  
-KiCad project: [`hardware/kicad/tama_bridge_esp32_wroom_32e/`](hardware/kicad/tama_bridge_esp32_wroom_32e/)
+- GPIO16 / GPIO17 — Tamagotchi UART at 460800 baud
+- GPIO4 — mode switch to GND
+- BAT+ / BAT− — 3.3 V from the external battery module
+
+Pad map, BOM, and Gerbers: [`hardware/README.md`](hardware/README.md).
 
 ## Web tools (BLE shim)
 

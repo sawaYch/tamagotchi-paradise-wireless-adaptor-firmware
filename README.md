@@ -4,6 +4,13 @@ A Bluetooth transparent serial bridge for **Tamagotchi Paradise**. It lets PC an
 
 Built around an **ESP32-WROOM-32E-N4** module, the adaptor sits between the host and Tamagotchi Paradise and forwards bytes in both directions at 460800 baud.
 
+## Rev 1.0
+<img src="./docs/20261126_191917.jpg" width="320" />
+<img src="./docs/20261126_191859.jpg" width="320" />
+<img src="./docs/20261127_042046.jpg" width="320" />
+
+_The silk print on the back TX RX means connect to TMGC's TX RX. It is not TX RX of the ESP32. Wireless adaptor case rev 1.0, pending redesign_
+
 ## Why this exists
 
 Official and community tools expect a serial (UART / Web Serial) connection. That works well on desktop with a cable, but:

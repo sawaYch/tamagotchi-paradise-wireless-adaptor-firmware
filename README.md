@@ -175,8 +175,7 @@ Since iOS only support BLE, it does not create a serial COM port in web browser 
 4. Select "Open URL" (Not Open App)  
    <img src="./docs/IMG_0882.PNG" width="450">
 
-5. Fill-in url "bluefy://{your hosted proxy website for tmgc web tools}"  
-   <img src="./docs/IMG_0883.PNG" width="450">
+5. Fill-in url "bluefy://{your hosted proxy website for tmgc web tools}"
 
 6. Done. Now you click the newly added shortcut on Home Screen should open Bluefy with TMGC Web Tools. Toggle the wireless adaptor to BLE mode, and the on the web tools click "Connect USB", you should see the BLE adaptor device. Connect to it, then plug the wireless adaptor to your Tamagotchi Paradise, you should be able to transfer Gift, Lab items, etc.
 

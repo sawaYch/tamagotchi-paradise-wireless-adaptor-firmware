@@ -9,6 +9,7 @@ Built around an **ESP32-WROOM-32E-N4** module, the adaptor sits between the host
 <img src="./docs/20261126_191917.jpg" width="320" />
 <img src="./docs/20261126_191859.jpg" width="320" />
 <img src="./docs/20261127_042046.jpg" width="320" />
+<img src="./docs/20261127_082405.jpg" width="320" />
 
 _The silk print on the back TX RX means connect to TMGC's TX RX. It is not TX RX of the ESP32. Wireless adaptor case rev 1.0 still in early prototyping phase._
 

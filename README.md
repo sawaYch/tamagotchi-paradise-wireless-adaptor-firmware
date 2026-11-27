@@ -1,15 +1,16 @@
 # Tamagotchi Paradise Wireless Adaptor
 
-A Bluetooth transparent serial bridge for **Tamagotchi Paradise**. It lets PC and mobile tools such as **TamaHome** (https://bbamorachi.us/tamahome-toolkit-windows/), **BBSite** (https://tools.bbamorachi.us/), and similar UART-based apps talk to the device wirelessly over Bluetooth instead of a wired USB–UART cable.
+A Bluetooth transparent serial bridge for **Tamagotchi Paradise**. It lets PC and mobile tools such as [**TamaHome**](https://bbamorachi.us/tamahome-toolkit-windows/), [**BBSite**](https://tools.bbamorachi.us/), [**Paramix Studio**](https://mameise.github.io/Paramix-Studio/), and similar UART-based apps talk to the device wirelessly over Bluetooth instead of a wired USB–UART cable.
 
 Built around an **ESP32-WROOM-32E-N4** module, the adaptor sits between the host and Tamagotchi Paradise and forwards bytes in both directions at 460800 baud.
 
 ## Rev 1.0
+
 <img src="./docs/20261126_191917.jpg" width="320" />
 <img src="./docs/20261126_191859.jpg" width="320" />
 <img src="./docs/20261127_042046.jpg" width="320" />
 
-_The silk print on the back TX RX means connect to TMGC's TX RX. It is not TX RX of the ESP32. Wireless adaptor case rev 1.0, pending redesign_
+_The silk print on the back TX RX means connect to TMGC's TX RX. It is not TX RX of the ESP32. Wireless adaptor case rev 1.0 still in early prototyping phase._
 
 ## Why this exists
 
@@ -49,13 +50,14 @@ Device names:
 
 ## Repository layout
 
-| Path                                                                                   | Contents                                                                                  |
-| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [`firmware/tama_bridge/`](firmware/tama_bridge/)                                       | Arduino / ESP32 firmware (SPP + BLE bridge)                                               |
-| [`hardware/esp32-wroom-32e-n4-single/`](hardware/esp32-wroom-32e-n4-single/)           | KiCad project for the ESP32-WROOM-32E-N4 board, plus Gerbers, BOM, and CPL               |
-| [`hardware/README.md`](hardware/README.md)                                             | Pad map, flashing, and fabrication notes                                                  |
-| [`worker/`](worker/)                                                                   | Cloudflare Worker that proxies web tools and injects a BLE Web Serial shim                |
-| [`tools/ble-loopback/`](tools/ble-loopback/)                                           | Optional local BLE throughput / shim test pages (dev tools for protocol analysis)        |
+| Path                                                                         | Contents                                                                          |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [`firmware/tama_bridge/`](firmware/tama_bridge/)                             | Arduino / ESP32 firmware (SPP + BLE bridge)                                       |
+| [`hardware/esp32-wroom-32e-n4-single/`](hardware/esp32-wroom-32e-n4-single/) | KiCad project for the ESP32-WROOM-32E-N4 board, plus Gerbers, BOM, and CPL        |
+| [`hardware/README.md`](hardware/README.md)                                   | Pad map, flashing, and fabrication notes                                          |
+| [`worker/`](worker/)                                                         | Cloudflare Worker that proxies web tools and injects a BLE Web Serial shim        |
+| [`tools/ble-loopback/`](tools/ble-loopback/)                                 | Optional local BLE throughput / shim test pages (dev tools for protocol analysis) |
+| [`tools/TamaHomeLaunch/`](tools/TamaHomeLaunch/)                             | Windows launcher so stock TamaHome can open the Bluetooth COM port at 460800      |
 
 The adaptor also needs a case and a rechargeable LiPo battery circuit. See https://github.com/sawaYch/tamagotchi-paradise-uart-adaptor/tree/main/models/wireless
 
@@ -92,13 +94,64 @@ That lets browser-based tools reuse their existing Web Serial code path over BLE
 
 ## Platform notes
 
-| Platform                | Typical path                                                                          |
-| ----------------------- | ------------------------------------------------------------------------------------- |
-| Windows / macOS / Linux | SPP as a Bluetooth serial port (Both work with TamaHome desktop app & Tama Web Tools) |
-| Android                 | SPP via Chrome in Desktop site mode                                                   |
-| iOS                     | BLE via BLE supported web browser Bluefy                                              |
+| Platform | Typical path                             | Application                                                                                                           |
+| -------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Windows  | SPP                                      | TamaHome through [TamaHomeLaunch](#windows-tamahome-tamahomelaunch) ✅ <br/> bbamorachi.us ✅ <br/> Paramix Studio ✅ |
+| MacOS    | SPP                                      | TamaHome ✅ <br/> bbamorachi.us ✅ <br/> Paramix Studio ✅                                                            |
+| Linux    | SPP                                        | \*untested                                                                                                            |
+| Android  | SPP via Chrome in Desktop site mode      | bbamorachi.us ✅ <br/> Paramix Studio ✅                                                                              |
+| iOS      | BLE via Bluefy web browser | bbamorachi.us ✅ <br/> Paramix Studio ✅                                                                              |
 
 Exact app support depends on each tool (TamaHome, BBSite, etc.). The adaptor only provides a transparent UART bridge.
+
+## Windows TamaHome (TamaHomeLaunch)
+
+Stock TamaHome on Windows cannot open this adaptor's Bluetooth serial port. [`tools/TamaHomeLaunch`](tools/TamaHomeLaunch) starts TamaHome and skips that one check in memory. It does not edit TamaHome's files. Browser tools such as BBSite do not need it: Chrome Web Serial does not have this check.
+
+### Why it is needed
+
+TamaHome talks to Tamagotchi Paradise at **460800** baud. This firmware keeps that rate on the UART between the ESP32 and the Tamagotchi (GPIO16 / GPIO17). Bluetooth SPP only carries the bytes. The baud number on the Windows COM port does not set the radio speed, and the Microsoft Bluetooth serial driver accepts `460800`.
+
+The failure happens before the driver is asked. Windows reports the Bluetooth COM port's maximum baud as **115200**. TamaHome uses .NET `System.IO.Ports`, which reads that maximum and throws:
+
+```text
+The maximum baud rate for the device is 115200 (Parameter 'baudRate')
+```
+
+A wired CP2102, CH340, or FTDI port reports a maximum high enough for 460800, so the same TamaHome build works on a USB–UART cable and stops on Bluetooth.
+
+Editing `System.IO.Ports.dll` inside the TamaHome folder removes the check, but a TamaHome update replaces that file. The launcher leaves the install untouched. Each time it starts TamaHome, it loads a small startup hook (`TamaHomeBaudHook.dll`) that skips the maximum-baud test in that process only.
+
+### Build
+
+TamaHome already requires the .NET 8 desktop runtime. From this repository:
+
+```text
+dotnet publish tools/TamaHomeLaunch/TamaHomeLaunch.csproj -c Release
+```
+
+The program is:
+
+```text
+tools/TamaHomeLaunch/bin/Release/net8.0/publish/TamaHomeLaunch.exe
+```
+
+`TamaHomeBaudHook.dll` is written next to that exe. Keep those files together. Point a shortcut at `TamaHomeLaunch.exe`, not at `TamaParadiseTool.exe`.
+
+### Use
+
+1. Pair **Tamagotchi Paradise Bridge SPP** in Windows. Leave the adaptor's mode switch open (SPP). Shorting the switch to GND selects BLE, which TamaHome does not use.
+2. Start **TamaHomeLaunch.exe**. It runs `E:\TamaParadiseTool\TamaParadiseTool.exe`. If TamaHome is installed somewhere else, pass that path:
+
+   ```text
+   TamaHomeLaunch.exe "D:\Apps\TamaParadiseTool\TamaParadiseTool.exe"
+   ```
+
+3. In TamaHome, connect to the **Outgoing** Bluetooth COM port.
+
+Windows creates two ports, both often named "Standard Serial over Bluetooth link". Only the Outgoing port connects to the adaptor. The Incoming port is for a remote device calling this PC. This adaptor is the server, so it never calls in. The Incoming port still opens, then every write waits until it times out. Cancelling that wait can freeze TamaHome. In Device Manager, the Outgoing port's device id contains the adaptor's Bluetooth address. The Incoming port's address is all zeros.
+
+If the launcher cannot find TamaHome or the hook DLL, it shows a message box. A startup log is appended to `%LocalAppData%\TamaHomeLaunch\hook.log`. A normal start records that two baud checks were skipped.
 
 ## Extra Setup on iOS
 

@@ -6,10 +6,10 @@ Built around an **ESP32-WROOM-32E-N4** module, the adaptor sits between the host
 
 ## Rev 1.0
 
-<img src="./docs/20261126_191917.jpg" width="320" />
-<img src="./docs/20261126_191859.jpg" width="320" />
-<img src="./docs/20261127_042046.jpg" width="320" />
-<img src="./docs/20261127_082405.jpg" width="320" />
+![rev1-1](./docs/20261126_191917.jpg)
+![rev1-2](./docs/20261126_191859.jpg)
+![rev1-3](./docs/20261127_042046.jpg)
+![rev1-4](./docs/20261127_082405.jpg)
 
 _The silk print on the back TX RX means connect to TMGC's TX RX. It is not TX RX of the ESP32. Wireless adaptor case rev 1.0 still in early prototyping phase._
 
@@ -176,6 +176,7 @@ Since iOS only support BLE, it does not create a serial COM port in web browser 
    <img src="./docs/IMG_0882.PNG" width="450">
 
 5. Fill-in url "bluefy://{your hosted proxy website for tmgc web tools}"
+   <img src="./docs/IMG_0883.PNG" width="450">
 
 6. Done. Now you click the newly added shortcut on Home Screen should open Bluefy with TMGC Web Tools. Toggle the wireless adaptor to BLE mode, and the on the web tools click "Connect USB", you should see the BLE adaptor device. Connect to it, then plug the wireless adaptor to your Tamagotchi Paradise, you should be able to transfer Gift, Lab items, etc.
 
